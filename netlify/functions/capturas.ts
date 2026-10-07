@@ -9,7 +9,7 @@ import {
 } from '../../src/hoja.ts';
 import type { CapturaEnHoja } from '../../src/hoja.ts';
 import { hoyEnMexico, validar } from '../../src/reglas.ts';
-import { autorizado, error, fallaDeGoogle, json } from '../lib/http.ts';
+import { error, fallaDeGoogle, json, rechazo } from '../lib/http.ts';
 import { hojaDesdeEntorno } from '../lib/sheets.ts';
 
 const RECIENTES = 30;
@@ -21,8 +21,9 @@ const RECIENTES = 30;
  * la fuente de verdad. Así nunca hay que decidir quién gana ante un conflicto.
  */
 export default async (req: Request) => {
-  if (!autorizado(req)) {
-    return error('Token inválido.', 401);
+  const sinPermiso = rechazo(req);
+  if (sinPermiso) {
+    return sinPermiso;
   }
   try {
     if (req.method === 'GET') {

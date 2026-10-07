@@ -8,6 +8,8 @@
  * libro del respaldo (que comparte pestañas con Finora 2): si esta credencial se filtra, no
  * alcanza nada más.
  */
+import { variable } from './http.ts';
+
 const TOKEN_URL = 'https://oauth2.googleapis.com/token';
 const API = 'https://sheets.googleapis.com/v4/spreadsheets';
 const ALCANCE = 'https://www.googleapis.com/auth/spreadsheets';
@@ -19,7 +21,7 @@ export interface Hoja {
 }
 
 function requerida(nombre: string): string {
-  const valor = process.env[nombre];
+  const valor = variable(nombre);
   if (!valor) {
     throw new Error(`Falta la variable de entorno ${nombre}.`);
   }
