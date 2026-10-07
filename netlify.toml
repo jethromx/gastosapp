@@ -1,0 +1,28 @@
+# Netlify lee este archivo al importar el repositorio de GitHub: no hay que llenar nada
+# de build a mano en la pantalla de Netlify, solo las variables de entorno (ver README).
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "24"
+
+# Las funciones declaran su ruta (`/api/...`) y van antes que esta regla; esta solo atiende
+# lo que no es un archivo ni una función: las rutas de la app de una sola página.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "no-referrer"
+
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"

@@ -1,0 +1,18 @@
+{
+  "expo": {
+    "name": "Briq Satélite",
+    "slug": "briq-satelite",
+    "version": "0.1.0",
+    "scheme": "briq-satelite",
+    "userInterfaceStyle": "automatic",
+    "web": {
+      "bundler": "metro",
+      "output": "single",
+      "name": "Briq Satélite",
+      "shortName": "Satélite",
+      "themeColor": "#0f172a",
+      "backgroundColor": "#f8fafc"
+    },
+    "plugins": ["expo-router"]
+  }
+}

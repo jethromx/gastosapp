@@ -1,0 +1,11 @@
+{
+  "name": "Briq Satélite",
+  "short_name": "Satélite",
+  "description": "Captura gastos, retiros e ingresos fuera de casa.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#0f172a",
+  "lang": "es-MX",
+  "icons": [{ "src": "/icono.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}

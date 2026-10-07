@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.expo/
+.netlify/
+.env
+*.log
+.DS_Store
+expo-env.d.ts
