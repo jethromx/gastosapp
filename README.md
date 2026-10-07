@@ -81,13 +81,19 @@ npx netlify dev   # interfaz + funciones, con las variables en un .env (no se su
 
 ## El contrato con briq-invest
 
-Lo que la app de casa tiene que hacer (todavía no existe allá):
+Desde briq-invest v4.16.0 (E44), en **Gastos → Mi mes → Satélite**:
 
-1. **Importar:** leer `Capturas!A2:J`, tomar las filas con `importada_en` vacío, crear cada
-   `Movement` con el `id` de la fila como llave idempotente y escribir el instante en la
-   columna J. Si una no pasa las reglas de casa, dejarla sin marcar y avisar en pantalla.
-2. **Publicar:** reescribir `Catálogo!A2:D` con las cuentas y categorías vigentes y una fila
-   `PUBLICADO` con el instante.
+1. **Elegir el buzón:** se pega la dirección de esta hoja. Al guardar, briq-invest **publica**
+   `Catálogo` —cuentas abiertas, categorías activas y una fila `PUBLICADO`— con los `id` reales.
+   La hoja tiene que estar compartida como **editor** también con la cuenta de servicio del
+   respaldo de briq-invest (el diálogo enseña el correo).
+2. **Traer:** lee `Capturas!A2:J`, enseña lo nuevo y lo que no entraría con su motivo, crea cada
+   `Movement` con las reglas de casa, escribe el instante en la columna J (`importada_en`) y
+   vuelve a publicar el catálogo. Lo que decide si una captura ya entró es la tabla
+   `capturas_satelite` de briq-invest, por el `id` de la fila: si la marca de la hoja falla, no
+   se duplica nada, y un movimiento borrado allá no vuelve.
+
+briq-invest solo escribe la columna J y la pestaña `Catálogo`; las columnas A–I son del satélite.
 
 `monto` es texto con dos decimales (`"1234.50"`) y `fecha` es `AAAA-MM-DD`: se escriben con
 `RAW` para que una nota que empiece con `=` no se vuelva fórmula.
